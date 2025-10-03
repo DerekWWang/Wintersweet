@@ -1,0 +1,12 @@
+venv
+__pycache__/
+.ipynb_checkpoints
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.db
+*.sqlite3
+*.jpg

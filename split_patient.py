@@ -39,11 +39,11 @@ def split_patients(base_path="/Code/DL/bbosis/Hongyuan-Babesiosis", labels_file=
         for img, lab in zip(images, labels):
             testing_set.append({"img_path": f"core_data/{img}.jpg", "label": lab})
 
-    pd.DataFrame(training_set).to_csv(data_dir/"train/training.csv", index=False)
-    pd.DataFrame(testing_set).to_csv(data_dir/"test/testing.csv", index=False)
+    pd.DataFrame(training_set).to_csv(data_dir/"training.csv", index=False)
+    pd.DataFrame(testing_set).to_csv(data_dir/"/testing.csv", index=False)
 
 
     print(f"Found {len(ptid2images)} patients with {len(df)} images")
 
 if __name__ == "__main__":
-    split_training()
+    split_patients()

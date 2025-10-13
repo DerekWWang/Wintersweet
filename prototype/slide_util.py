@@ -4,7 +4,7 @@ from typing import List
 import numpy as np
 
 
-def slide_to_tiles(slide: np.ndarray, tile_size: int, stride: int) -> List[np.ndarray]:
+def slide_to_tiles(slide: np.ndarray, tile_size: int, stride: int, limit: int) -> List[np.ndarray]:
     """
     Converts a slide into a list of tiles of size tile_size x tile_size.
 
@@ -34,4 +34,4 @@ def slide_to_tiles(slide: np.ndarray, tile_size: int, stride: int) -> List[np.nd
             tile = slide[y : y + tile_size, x : x + tile_size, :]
             tiles.append(tile)
 
-    return tiles
+    return tiles if limit <= 0 else tiles[:limit]

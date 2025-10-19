@@ -29,6 +29,7 @@ class GatedAttentionMIL(nn.Module):
         A_tanh = torch.tanh(self.V(H))           # (n, a)
         A_sig  = torch.sigmoid(self.U(H))        # (n, a)
         s = self.w(A_tanh * A_sig).squeeze(1)    # (n,)
+        print(s.shape)
 
         if mask is not None:                     # mask out pads
             s = s.masked_fill(~mask, float('-inf'))

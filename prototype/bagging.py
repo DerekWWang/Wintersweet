@@ -59,7 +59,12 @@ def labels2bags(labels_df):
 
     return embeddings, torch.tensor(labels)
 
-
+print("starting bag creation for training set")
 e, l = labels2bags(pd.read_csv("C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/training.csv"))
-torch.save(e, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/tensors/embeddings.pt")
-torch.save(l, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/tensors/labels.pt")
+torch.save(e, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/embeddings/embeddings.pt")
+torch.save(l, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/embeddings/labels.pt")
+
+print("starting bag creation for validation set")
+e_val, l_val = labels2bags(pd.read_csv("C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/testing.csv"))
+torch.save(e_val, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/embeddings/val_embeddings.pt")
+torch.save(l_val, "C:/Code/DL/bbosis/Hongyuan-Babesiosis/data/embeddings/val_labels.pt")

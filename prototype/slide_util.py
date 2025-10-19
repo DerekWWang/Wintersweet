@@ -12,6 +12,7 @@ def slide_to_tiles(slide: np.ndarray, tile_size: int, stride: int, limit: int) -
         slide (np.ndarray): Slide array with shape (height, width, channels).
         tile_size (int): Size of the square tile.
         stride (int): Step size between tile origins. Use 0 for non-overlapping tiling.
+        limit (int): Maximum number of tiles to return. Use -1 for no limit.
 
     Returns:
         List[np.ndarray]: List of tiles, each with shape (tile_size, tile_size, channels).

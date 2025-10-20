@@ -8,7 +8,7 @@ def test_split_patient_seperate():
     te_pids = te["PtID"]
 
     # assert(set(tr_pids).isdisjoint(set(te_pids)), True)
-    print(set(tr_pids).isdisjoint(set(te_pids)))  
+    print(set(tr_pids).isdisjoint(set(te_pids)))
     return set(tr_pids).isdisjoint(set(te_pids))
 
 test_split_patient_seperate()

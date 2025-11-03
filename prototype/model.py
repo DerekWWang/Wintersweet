@@ -9,13 +9,22 @@ class GatedAttentionMIL(nn.Module):
             nn.Linear(in_dim, hidden),
             nn.ReLU(inplace=True),
             nn.Dropout(dropout),
+            nn.Linear(hidden, hidden),
+            nn.ReLU(inplace=True),
+            nn.Dropout(dropout),
         )
         # Step 2: gated attention parameters
         self.V = nn.Linear(hidden, att_dim, bias=True)
         self.U = nn.Linear(hidden, att_dim, bias=True)
         self.w = nn.Linear(att_dim, 1, bias=False)
         # Step 4: slide classifier
-        self.cls = nn.Linear(hidden, 1)
+        # self.cls = nn.Linear(hidden, 1)
+        self.cls = nn.Sequential(
+            nn.Linear(hidden, hidden // 2),
+            nn.ReLU(inplace=True),
+            nn.Dropout(dropout),
+            nn.Linear(hidden // 2, 1),
+        )
 
     def forward(self, F_bag, mask=None, topk=None, temperature=1.0):
         """
@@ -29,7 +38,7 @@ class GatedAttentionMIL(nn.Module):
         A_tanh = torch.tanh(self.V(H))           # (n, a)
         A_sig  = torch.sigmoid(self.U(H))        # (n, a)
         s = self.w(A_tanh * A_sig).squeeze(1)    # (n,)
-        print(s.shape)
+        # print(s.shape)
 
         if mask is not None:                     # mask out pads
             s = s.masked_fill(~mask, float('-inf'))
